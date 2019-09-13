@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import TodoApp from './component/Todo/TodoApp';
+import About from './component/About';
+import Navbar from './component/Navbar';
+import Contact from './component/Contact';
+import Home from './component/Home';
+import Post from './component/Post';
+
+class App extends React.Component {
+	
+	render(){
+		return (
+            <BrowserRouter>
+                <div className='app'>
+                    <Navbar/>
+                    <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route path='/about' component={About} />
+                        <Route path='/contact' component={Contact} />
+                        <Route path='/todo-app' component={TodoApp} />
+                        <Route path='/:post_id' component={Post} />
+                    </Switch>
+                </div>
+            </BrowserRouter>
+		)
+	}
 }
 
 export default App;
